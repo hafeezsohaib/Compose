@@ -23,7 +23,7 @@ sealed class BottomBarScreen(
         icon = Icons.Default.Person
     )
 
-    data object SettingScreen : BottomBarScreen(
+     object SettingScreen : BottomBarScreen(
         route = "Setting",
         tittle = "Setting",
         icon = Icons.Default.Settings
