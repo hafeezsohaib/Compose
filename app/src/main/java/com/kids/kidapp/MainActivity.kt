@@ -8,9 +8,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.kids.kidapp.bottomnavigationbar.MainScreen
+import com.kids.kidapp.screens.ItemClickListener
 import com.kids.kidapp.ui.theme.KidAppTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -25,6 +26,10 @@ class MainActivity : ComponentActivity() {
             }
 
         }
+    }
+
+    override fun onItemClick(item: String) {
+        TODO("Not yet implemented")
     }
 
 

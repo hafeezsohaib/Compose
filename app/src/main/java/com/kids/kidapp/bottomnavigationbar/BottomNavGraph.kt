@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kids.kidapp.screens.HomeScreen
+import com.kids.kidapp.screens.PreviewBoxWithText
 import com.kids.kidapp.screens.ProfileScreen
 import com.kids.kidapp.screens.SettingScreen
 
@@ -18,7 +19,7 @@ fun BottomNavGraph(navController: NavHostController) {
     )
     {
         composable(route = BottomBarScreen.HomeScreen.route) {
-            HomeScreen()
+            PreviewBoxWithText()
         }
         composable(route = BottomBarScreen.SettingScreen.route) {
             SettingScreen()
