@@ -5,7 +5,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kids.kidapp.screens.DetailsScreen
-import com.kids.kidapp.screens.HomeScreen
 import com.kids.kidapp.screens.PreviewBoxWithText
 import com.kids.kidapp.screens.ProfileScreen
 import com.kids.kidapp.screens.SettingScreen
