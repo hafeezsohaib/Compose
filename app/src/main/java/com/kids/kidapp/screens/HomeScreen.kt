@@ -2,6 +2,7 @@ package com.kids.kidapp.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,13 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.kids.kidapp.R
 
 
 @Composable
-fun HomeScreen(text: String) {
+fun HomeScreen(data: String,navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -36,7 +37,11 @@ fun HomeScreen(text: String) {
                 defaultElevation = 6.dp
             ),
             modifier = Modifier
+                .clickable {
+                    println("data compose::::$data")
+                    navController.navigate("detailsScreen/$data")
 
+                }
                 .background(Color.Black)
                 .padding(
                     top = 20.dp,
@@ -61,7 +66,7 @@ fun HomeScreen(text: String) {
 
                 // Text
                 Text(
-                    text = text,
+                    text = data,
                     style = MaterialTheme.typography.headlineSmall,
                     color = Color.White,
                     fontFamily = FontFamily.Serif,
@@ -76,9 +81,9 @@ fun HomeScreen(text: String) {
 }
 
 
-@Preview(showBackground = true)
+
 @Composable
-fun PreviewBoxWithText() {
+fun PreviewBoxWithText(navController: NavHostController) {
     val items = listOf(
         "Workout in Gym",
         "Workout Home",
@@ -119,21 +124,19 @@ fun PreviewBoxWithText() {
         "Workout in Gym",
         "SK"
     )
-    MyListView(items)
+    MyListView(items,navController)
 }
 
 @Composable
-fun MyListView(items: List<String>) {
+fun MyListView(items: List<String>,navController: NavHostController) {
     LazyColumn {
         items(items.size) { index ->
             // Use index to get each item from the list
             val item = items[index]
-            HomeScreen(text = item)
+            HomeScreen(data = item,navController=navController)
         }
     }
 }
-interface ItemClickListener {
-    fun onItemClick(item: String)
-}
+
 
 
