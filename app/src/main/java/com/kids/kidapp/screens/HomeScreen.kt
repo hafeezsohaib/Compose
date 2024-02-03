@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,10 +27,9 @@ import com.kids.kidapp.R
 
 @Composable
 fun HomeScreen(data: String,navController: NavHostController) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Color.White
 
         ) {
         ElevatedCard(
@@ -42,26 +42,29 @@ fun HomeScreen(data: String,navController: NavHostController) {
                     navController.navigate("detailsScreen/$data")
 
                 }
-                .background(Color.Black)
                 .padding(
-                    top = 20.dp,
-                    start = 15.dp,
-                    end = 15.dp
+                    top=10.dp,
+                    start = 10.dp,
+                    end = 10.dp,
+                    bottom = 10.dp
+
                 )
                 .fillMaxWidth()
-                .fillMaxHeight()
+                .background(Color.White)
+
         ) {
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .fillMaxHeight()
             ) {
                 // Image
                 Image(
                     painter = painterResource(id = R.drawable.c),
                     contentDescription = null,
                     modifier = Modifier
-
                         .align(Alignment.TopStart)
+                        .fillMaxWidth()
                 )
 
                 // Text
@@ -72,7 +75,8 @@ fun HomeScreen(data: String,navController: NavHostController) {
                     fontFamily = FontFamily.Serif,
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
-                        .padding(end = 20.dp)
+                        .padding(end = 30.dp)
+                        .padding(bottom = 10.dp)
 
                 )
             }
@@ -129,7 +133,11 @@ fun PreviewBoxWithText(navController: NavHostController) {
 
 @Composable
 fun MyListView(items: List<String>,navController: NavHostController) {
-    LazyColumn {
+    LazyColumn (
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 56.dp)
+    ){
         items(items.size) { index ->
             // Use index to get each item from the list
             val item = items[index]
