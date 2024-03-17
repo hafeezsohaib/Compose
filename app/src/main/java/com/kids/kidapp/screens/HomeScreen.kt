@@ -3,12 +3,15 @@ package com.kids.kidapp.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
@@ -23,15 +26,16 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.kids.kidapp.R
+import com.kids.kidapp.data.ListData
 
 
 @Composable
-fun HomeScreen(data: String,navController: NavHostController) {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color.White
-
-        ) {
+fun HomeScreen(data: ListData, navController: NavHostController) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp)
+    ) {
         ElevatedCard(
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 6.dp
@@ -40,111 +44,85 @@ fun HomeScreen(data: String,navController: NavHostController) {
                 .clickable {
                     println("data compose::::$data")
                     navController.navigate("detailsScreen/$data")
-
                 }
-                .padding(
-                    top=10.dp,
-                    start = 10.dp,
-                    end = 10.dp,
-                    bottom = 10.dp
-
-                )
                 .fillMaxWidth()
-                .background(Color.White)
-
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
+                modifier = Modifier.fillMaxSize()
             ) {
                 // Image
                 Image(
-                    painter = painterResource(id = R.drawable.c),
+                    painter = painterResource(id = R.drawable.clipper1),
                     contentDescription = null,
                     modifier = Modifier
-                        .align(Alignment.TopStart)
                         .fillMaxWidth()
-                )
-
-                // Text
-                Text(
-                    text = data,
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = Color.White,
-                    fontFamily = FontFamily.Serif,
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(end = 30.dp)
-                        .padding(bottom = 10.dp)
-
+                        .align(Alignment.TopStart)
                 )
             }
         }
+
+        Text(
+            text = data.name,
+            style = MaterialTheme.typography.headlineSmall,
+            color = Color.Black,
+            fontFamily = FontFamily.Serif,
+            modifier = Modifier
+                .padding(top = 10.dp)
+                .align(Alignment.CenterHorizontally)
+
+
+        )
     }
 }
+
 
 
 
 @Composable
 fun PreviewBoxWithText(navController: NavHostController) {
     val items = listOf(
-        "Workout in Gym",
-        "Workout Home",
-        "workout",
-        "Workout in Gym",
-        "SK",
-        "Suheb",
-        "Workout in Gym",
-        "workout",
-        "workout",
-        "Workout in Gym",
-        "Sohaib",
-        "Khan",
-        "Workout in Gym",
-        "workout",
-        "workout",
-        "Workout in Gym",
-        "SK",
-        "Suheb",
-        "Sohaib",
-        "Khan",
-        "Workout in Gym",
-        "workout",
-        "workout",
-        "Workout in Gym",
-        "Suheb",
-        "Sohaib",
-        "Khan",
-        "S.Khan...",
-        "SK",
-        "Suheb",
-        "Sohaib",
-        "Khan",
-        "S.Khan...",
-        "Workout in Gym",
-        "workout",
-        "workout",
-        "Workout in Gym",
-        "SK"
-    )
+        ListData("Hair Clipper", 1, "https://example.com/image1.jpg"),
+        ListData("Air horn", 2, "https://example.com/image2.jpg"),
+    ListData("Hair Clipper", 1, "https://example.com/image1.jpg"),
+    ListData("Air horn", 2, "https://example.com/image2.jpg"),
+    ListData("Hair Clipper", 1, "https://example.com/image1.jpg"),
+    ListData("Air horn", 2, "https://example.com/image2.jpg"))
     MyListView(items,navController)
 }
 
 @Composable
-fun MyListView(items: List<String>,navController: NavHostController) {
-    LazyColumn (
+fun MyListView(items: List<ListData>,navController: NavHostController) {
+
+    Text(
+        text = "Funny Sound",
+        style = MaterialTheme.typography.headlineSmall,
+        color = Color.Black,
+        fontFamily = FontFamily.Serif,
         modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 56.dp)
-    ){
-        items(items.size) { index ->
-            // Use index to get each item from the list
-            val item = items[index]
+            .padding(start = 30.dp)
+
+
+
+    )
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        content = {
+            items(items.size) { index ->
+                val item = items[index]
             HomeScreen(data = item,navController=navController)
-        }
-    }
+            }
+        },
+        modifier = Modifier.
+        fillMaxSize().padding(bottom = 56.dp)
+            .padding(top = 40.dp)
+
+    )
+
+
 }
+
+
 
 
 

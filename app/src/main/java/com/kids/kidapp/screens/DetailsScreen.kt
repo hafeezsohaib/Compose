@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 @Composable
 fun DetailsScreen(name: String, phone: String,navController: NavHostController) {
 
-    HomeScreen(data = name, navController = navController)
+    //HomeScreen(data = name, navController = navController)
 }
 
 
