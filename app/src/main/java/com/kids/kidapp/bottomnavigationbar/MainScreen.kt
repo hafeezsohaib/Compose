@@ -60,17 +60,18 @@ fun RowScope.AddItem(
 ) {
     BottomNavigationItem(
         modifier = Modifier
-            .background(Color.Black),
+            .background(Color.White),
 
         // Set your desired background color here
             //.padding(25.dp), // Adjust padding as needed
         label = {
-            Text(text = screen.tittle, color = Color.White)
+            Text(text = screen.tittle, color = Color.Black)
         },
         icon = {
             Icon(
                 imageVector = screen.icon,
-                contentDescription = "Navigation Icon"
+                contentDescription = "Navigation Icon",
+                tint = Color.Black
             )
         },
         selected = currentDestination.hierarchy.any {

@@ -1,0 +1,67 @@
+{
+  "Status": {
+    "Time": "Feb 2024",
+    "data": [
+      {
+        "index": "1",
+        "name": "Air Horn",
+        "imageUrl": "air",
+        "color": "#FFAC1C"
+      },
+      {
+        "No": "2",
+        "name": "Hair Clipper",
+        "imageUrl": "hair",
+        "color": "#FF1493"
+      },
+      {
+        "index": "1",
+        "name": "Baby",
+        "imageUrl": "baby",
+        "color": "#F9DB22"
+      },
+      {
+        "index": "1",
+        "name": "Burp",
+        "imageUrl": "burp",
+        "color": "#A4C639"
+      },
+      {
+        "index": "1",
+        "name": "Gun",
+        "imageUrl": "gun",
+        "color": "#FF5F1F"
+      },
+      {
+        "index": "1",
+        "name": "Boom",
+        "imageUrl": "fart",
+        "color": "#FF1493"
+      },
+      {
+        "index": "1",
+        "name": "Baby",
+        "imageUrl": "baby",
+        "color": "#F9DB22"
+      },
+      {
+        "index": "1",
+        "name": "Burp",
+        "imageUrl": "burp",
+        "color": "#A4C639"
+      },
+      {
+        "index": "1",
+        "name": "Air Horn",
+        "imageUrl": "air",
+        "color": "#FFAC1C"
+      },
+      {
+        "No": "2",
+        "name": "Hair Clipper",
+        "imageUrl": "hair",
+        "color": "#FF1493"
+      }
+    ]
+  }
+}
