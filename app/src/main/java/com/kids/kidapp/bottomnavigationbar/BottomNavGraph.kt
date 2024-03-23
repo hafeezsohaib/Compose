@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.kids.kidapp.data.ListData
 import com.kids.kidapp.screens.DetailsScreen
 import com.kids.kidapp.screens.PreviewBoxWithText
 import com.kids.kidapp.screens.ProfileScreen
@@ -28,9 +29,14 @@ fun BottomNavGraph(navController: NavHostController) {
             ProfileScreen()
         }
         composable("detailsScreen/{itemName}") { backStackEntry ->
-            val itemName = backStackEntry.arguments?.getString("itemName") ?: ""
-            DetailsScreen(itemName,"9810649581",navController)
+           // val itemName = backStackEntry.arguments?.getString("itemName") ?: ""
+          //  DetailsScreen(itemName,"9810649581",navController)
+            val result=navController.previousBackStackEntry?.savedStateHandle?.get<ListData>("data")
+            if (result != null) {
+                DetailsScreen(result,"9810649581",navController)
+            }
         }
+
     }
 
 }

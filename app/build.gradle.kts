@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -61,7 +62,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     // Add the navigation-compose dependency
     implementation("androidx.navigation:navigation-compose:2.7.7")
-    implementation ("androidx.compose.material:material:1.6.3")
+    implementation ("androidx.compose.material:material:1.6.4")
     //Gson for parse json
     implementation ("com.google.code.gson:gson:2.10")
 

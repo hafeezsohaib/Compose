@@ -18,16 +18,23 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.activity.ComponentActivity
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -36,15 +43,19 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.compose.runtime.*
+import androidx.compose.ui.text.font.FontFamily
 
 import com.kids.kidapp.R
+import com.kids.kidapp.data.ListData
 
 
 @Composable
-fun DetailsScreen(name: String, phone: String, navController: NavHostController) {
+fun DetailsScreen(listData: ListData, phone: String, navController: NavHostController) {
 
+    Text(text = "Item Name: $listData")
+    Text(text = "Phone: $phone")
     YourComposable()
-    PhoneScreen()
+    listData.dataSound?.let { PhoneScreen(it, navController) }
 }
 
 @Composable
@@ -66,16 +77,16 @@ fun CircularBackground(
 @Preview
 @Composable
 fun YourComposable() {
-PhoneScreen()
+//PhoneScreen()
 
 }
 
 @Composable
-fun PhoneScreen(
+fun PhoneScreen(items: List<ListData>, navController: NavHostController,
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.White,
 ) {
-    val navController = rememberNavController()
+
 
     Box(
         modifier = modifier
@@ -120,6 +131,9 @@ fun PhoneScreen(
             }
             Spacer(modifier = Modifier.height(50.dp))
             ToggleButton()
+            Spacer(modifier = Modifier.height(30.dp))
+
+            MyHorizontalGridView(items,navController)
 
 
         }
@@ -145,3 +159,30 @@ fun ToggleButton() {
         )
     }
 }
+
+
+@Composable
+fun MyHorizontalGridView(items: List<ListData>, navController: NavHostController) {
+    Text(
+        text = "Click on Play",
+        style = MaterialTheme.typography.headlineSmall,
+        color = Color.Black,
+        fontFamily = FontFamily.Serif,
+        modifier = Modifier.padding(start = 10.dp)
+    )
+    LazyRow(
+        content = {
+            items(items.size) { index ->
+                val item = items[index]
+                HomeScreen(data = item, navController = navController)
+            }
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 56.dp)
+            .padding(top = 40.dp)
+    )
+}
+
+
+

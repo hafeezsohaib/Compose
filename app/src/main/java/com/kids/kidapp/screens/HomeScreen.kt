@@ -35,56 +35,7 @@ import com.kids.kidapp.data.ListData
 
 @Composable
 fun HomeScreen(data: ListData, navController: NavHostController) {
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(15.dp)
-    ) {
-        ElevatedCard(
-
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 6.dp
-            ),
-            modifier = Modifier
-                .clickable {
-                    println("data compose::::$data")
-                    navController.navigate("detailsScreen/$data")
-                }
-                .fillMaxWidth()
-                .height(150.dp)
-        ) {
-            Box(
-                modifier = Modifier.fillMaxSize()
-                    .background(Color(android.graphics.Color.parseColor(data.color)))
-            ) {
-                // Image
-
-                val resourceId = LocalContext.current.resources.getIdentifier(data.imageUrl, "drawable", LocalContext.current.packageName)
-
-                Image(
-                    painter = painterResource(id = resourceId),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Center)
-
-                )
-            }
-        }
-
-        Text(
-            text = data.name,
-            style = MaterialTheme.typography.headlineSmall,
-            color = Color.Black,
-            fontFamily = FontFamily.Serif,
-            modifier = Modifier
-                .padding(top = 10.dp)
-                .align(Alignment.CenterHorizontally)
-
-
-        )
-    }
+    SoundList(data = data, navController =navController )
 }
 
 
@@ -93,13 +44,6 @@ fun HomeScreen(data: ListData, navController: NavHostController) {
 @Composable
 fun PreviewBoxWithText(navController: NavHostController) {
     val getListData= GetListData(LocalContext.current).getData()
- //   val items = listOf(
-//        ListData("Hair Clipper", 1, "https://example.com/image1.jpg"),
-//        ListData("Air horn", 2, "https://example.com/image2.jpg"),
-//    ListData("Hair Clipper", 1, "https://example.com/image1.jpg"),
-//    ListData("Air horn", 2, "https://example.com/image2.jpg"),
-//    ListData("Hair Clipper", 1, "https://example.com/image1.jpg"),
-//    ListData("Air horn", 2, "https://example.com/image2.jpg"))
     MyListView(getListData,navController)
 }
 
@@ -124,12 +68,15 @@ fun MyListView(items: List<ListData>,navController: NavHostController) {
         content = {
             items(items.size) { index ->
                 val item = items[index]
-            HomeScreen(data = item,navController=navController)
+               HomeScreen(data = item,navController=navController)
             }
         },
-        modifier = Modifier.
-        fillMaxSize().padding(bottom = 56.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 56.dp)
             .padding(top = 40.dp)
+            .padding(start = 20.dp)
+            .padding(end = 20.dp)
 
     )
 
