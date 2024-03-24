@@ -119,12 +119,12 @@ fun PhoneScreen(items: List<ListData>, navController: NavHostController,
                 contentAlignment = Alignment.Center
             ) {
                 CircularBackground(
-                    color = Color.Red,
+                    color = Color.Magenta,
                     size = 250.dp,
                     margin = 100.dp
                 )
                 Image(
-                    painter = painterResource(id = R.drawable.hair),
+                    painter = painterResource(id = R.drawable.air),
                     contentDescription = "Your Image",
                     modifier = Modifier.size(120.dp)
                 )
@@ -174,7 +174,7 @@ fun MyHorizontalGridView(items: List<ListData>, navController: NavHostController
         content = {
             items(items.size) { index ->
                 val item = items[index]
-                HomeScreen(data = item, navController = navController)
+                SoundList(data = item, navController =navController ,ScreenType.Detail)
             }
         },
         modifier = Modifier

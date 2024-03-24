@@ -30,10 +30,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.kids.kidapp.data.ListData
+import com.kids.kidapp.soundHandle.SoundManage
 
 @Composable
-fun SoundList(data: ListData, navController: NavHostController) {
-
+fun SoundList(data: ListData,
+              navController: NavHostController,
+              screenType: ScreenType) {
+    val context= LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,8 +49,21 @@ fun SoundList(data: ListData, navController: NavHostController) {
             ),
             modifier = Modifier
                 .clickable {
-                    navController.currentBackStackEntry?.savedStateHandle?.set(key="data",value = data)
-                    navController.navigate("detailsScreen/$data")
+                    when (screenType) {
+                        is ScreenType.Home -> {
+                            // Perform home screen action
+                            navController.currentBackStackEntry?.savedStateHandle?.set(key="data",value = data)
+                            navController.navigate("detailsScreen/$data")
+
+                        }
+                        is ScreenType.Detail -> {
+                            // Perform detail screen action
+
+                            val mediaPlayer = SoundManage(context).loadSound(data)
+                             mediaPlayer?.start()
+                        }
+                    }
+
 
                 }
                 .fillMaxWidth()
@@ -85,5 +101,9 @@ fun SoundList(data: ListData, navController: NavHostController) {
 
         )
     }
+}
+sealed class ScreenType {
+    object Home : ScreenType()
+    object Detail : ScreenType()
 }
 

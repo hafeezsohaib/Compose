@@ -35,7 +35,7 @@ import com.kids.kidapp.data.ListData
 
 @Composable
 fun HomeScreen(data: ListData, navController: NavHostController) {
-    SoundList(data = data, navController =navController )
+    SoundList(data = data, navController =navController ,ScreenType.Home)
 }
 
 
